@@ -128,7 +128,10 @@ Calendar = ADDCOLUMNS(
 ```
 
 ## Data Modelling
-* Create a star schema data model by connecting all tables to the Journal table in a one-to-many relationship. 
+* Create a star schema data model by connecting all tables to the Journal table in a one-to-many relationship.
+
+## Create Measures
+
 
 ## Data Analysis using SQL generated queries
 
