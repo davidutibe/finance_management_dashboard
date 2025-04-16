@@ -127,6 +127,7 @@ Calendar = ADDCOLUMNS(
 ```
 ### Data Modelling
 * I created a star schema data model by connecting all tables to the Journal table in a one-to-many relationship.
+![Dashboard snippet](https://github.com/davidutibe/finance_management_dashboard/blob/main/Finance%20Dashboard%20(Management).JPG?raw=true)
 
 ## Data Analysis using Power BI DAX and visualizations
 
@@ -186,7 +187,8 @@ RETURN
  ```
 ## Data Visualizations
 To visualize the data, I used the following native power BI visuals: Matrix, Cards, Doughnut chart, Slicer, Sparkline, and conditional formatting tools.
->>> insert image>> Dashboard snippet
+![Dashboard snippet](https://github.com/davidutibe/finance_management_dashboard/blob/main/Finance%20Dashboard%20(Management).JPG?raw=true)
+
 ## Insights from the Data Analysis
 1. **Top 5 Performing SKUs by Gross Margin**  
    * *Observation*: Rice (5Kg) and Cooking Oil generated the highest profit margin with 81% and 57% respectively. The remaining 3 SKUs - Soft Drink (29%), Milk (28%), and Pasta (28%) cluster closely with modest margins, significantly low compared to the top 2. 
