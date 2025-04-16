@@ -39,33 +39,34 @@ The project involves the analysis of the Home Store Sales and Customer behaviour
 
 ## Research Questions
 The project aims to answer the following research questions:
-1. Which SKUs deliver the highest gross margins?
-2. How do discount vs volume deal promotions impact promo uplift?
-3. Which promotion type results in higher AOV (Average Order Value)?
-4. Which products drive the most add-on purchases (attach rate)?
-5. How does Customer Lifetime Value (CLV) vary across cities?
-6. Which bundles strike the best tradeoff between profit margin and customer perception?
+1. How did cost of goods sold (COGS) trends affect gross margins across months?
+2. Are expense increases in 2020 justified by proportionate increases in EBIT?
+3. What is the relationship between tax reductions and improvements in net income?
+4. Which month had the highest EBIT-to-Revenue ratio and what operational factors contributed?
+5. Which division(s) should receive more investment based on performance trends?
 
 ## About the Dataset
-The datasets was fetched from Youtube (an online learning platform). It contains 2 tabs - namely Journal and Chart of Account (COA)- combined together, they consisted _ entries, each entry representing a sales transaction with a unique transaction id. 
+The datasets was fetched from Youtube (an online learning platform). It contains of 2 tables - namely Journal and Chart of Account (COA).
+![image](https://github.com/user-attachments/assets/85f82a2e-1f3f-4df0-ba8b-06de3998f2c3)
+
 [(Link to the dataset)](https://docs.google.com/spreadsheets/d/1i778j9FUP08VgS25v64mK8oGUDGDGCxYe9vUziXigrg/edit?gid=0#gid=0)
 
-The dataset 1800 rows 15 columns with SKU transaction information. The columns are described as follows:
-* *TransactionID*: A unique ID assigned to each transaction
-* *CustomerID*: A unique Identifier for each customer that transacted
-* *SignupDate*: Date the customer was signed up on the platform
-* *City*: City the transaction was carried out
-* *ProductID*: A unique identifier for each SKU purchased
-* *ProductCategory*: A general classification for similar SKU grouping
-* *ProductName*: Name of SKU
-* *Quantity*: Total SKU units purchased per SKU transaction
-* *CostPrice*: Price the SKU was purchased at
-* *UnitPrice*: Selling price of the SKU
-* *DiscountPercent*: Agreed discount per SKU purchase
-* *PromoApplied*: True/ False Validation to indicate if the transaction was a promo sale or baseline sale
-* *PromoType*: Indicator of the type of promo applied
-* *AttachRate*: A numeric indicator indicating the rate at which an SKU was purchased with other SKUs
-* *TransactionDate*: Date the transaction occurred
+The dataset 3223 rowa rows 12 columns with transactions and accounts information. The columns are described as follows:
+**Journal**
+* *Date*: Date a transaction is carried out
+* *Division*: Regions (East, North, West, and South) where the company is operational
+* *Description*: Transaction Detail
+* *Dr*: Debit Column
+* *Cr*: Credit Column
+* *Amount*: Monetary value of transaction
+**Chart of Account (COA)**
+* *Account Code*: Unique ID for each account type
+* *Account*: Account type
+* *IS or BS*: Contains validation to identify entries categorized as either Income Statements (IS) or Balance Sheets (BS)
+* *Category*: Type of Account e.g. Revenue, Finance Costs, etc.
+* *Debit or Credit*: Agreed discount per SKU purchase
+* *Debit or Credit*: Contains validations to identify a Debit (D) or Credit account (C)
+* *Account Group*: Classifies various accounts into groups.
 
 ## Languages, Utilities, and Environments Used
 * Microsoft Excel: Data Simulation
@@ -127,10 +128,14 @@ Calendar = ADDCOLUMNS(
                       )
 ```
 
+## Data Analysis Approach
+
+
 ## Data Modelling
 * Create a star schema data model by connecting all tables to the Journal table in a one-to-many relationship.
 
 ## Create Measures
+* To visualize the 
 
 
 ## Data Analysis using SQL generated queries
