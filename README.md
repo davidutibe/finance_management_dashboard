@@ -2,8 +2,6 @@
 
 ## Table of Content
 
-## 📑 Table of Contents
-
 1. [Introduction](#introduction)  
 2. [Project Objectives](#project-objectives)  
 3. [Research Questions](#research-questions)  
