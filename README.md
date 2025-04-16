@@ -25,16 +25,15 @@
 
 
 ## Introduction
-Home Store (hypthetical), is a growing grocery delivery service across Nigeria, faced with tightening gross margins and a slowdown in repeat purchases. Leadership suspected that blanket discounting strategies were undercutting profitability and sought a more data-driven approach to pricing, bundling, and promotions.
+Home Store (hypthetical), is a growing grocery delivery service across Nigeria, has seen year-on-year fluctuations in profitability across its regional outlets. Leadership has rolled out varying strategies across procurement and operations between 2019 and 2020 to respond to regional performance disparities and rising operational costs.
 
-Using SQL, I analyzed their sales and customer data to identify patterns in margin contribution, customer behavior, and bundle effectiveness—leading to clear, actionable recommendations.
+This dashboard was created using Power BI to track the month-on-month and year-over-year performance of key Profit & Loss (P&L) indicators. With granular tracking at both regional and monthly levels, the company aims to uncover insights to guide pricing adjustments, cost reduction plans, and growth opportunities. 
 
-## Project Description
-The project involves the analysis of the Home Store Sales and Customer behaviour Data. The tasks to be completed include:
-1. Explore the data to look for the greatest correlations between the various bundles, promo strategies and profitability.
-2. Explore the data to determine the most profitable SKUs and cities with the most valuable customers.
-3. Create a markdown file for deployment.
-4. Host the code on GitHub or GitLab.
+## Project Objectives
+1. To evaluate the impact of operational efficiency and cost structures across regions.
+2. To determine which months and regions contribute most to profitability.
+3. To assess how shifts in COGS, finance costs, and tax expenses are affecting Net Income.
+4. To inform investment strategies for the coming fiscal year
 
 
 ## Research Questions
@@ -46,9 +45,7 @@ The project aims to answer the following research questions:
 5. Which division(s) should receive more investment based on performance trends?
 
 ## About the Dataset
-The datasets was fetched from Youtube (an online learning platform). It contains of 2 tables - namely Journal and Chart of Account (COA).
-![image](https://github.com/user-attachments/assets/85f82a2e-1f3f-4df0-ba8b-06de3998f2c3)
-
+The datasets was downloaded from youtube and tweaked using Microsoft Excel to meet the purpose of this research. It contains of 2 tables - namely Journal and Chart of Account (COA).
 [(Link to the dataset)](https://docs.google.com/spreadsheets/d/1i778j9FUP08VgS25v64mK8oGUDGDGCxYe9vUziXigrg/edit?gid=0#gid=0)
 
 The dataset 3223 rowa rows 12 columns with transactions and accounts information. The columns are described as follows:
@@ -131,158 +128,14 @@ Calendar = ADDCOLUMNS(
 ### Data Modelling
 * I created a star schema data model by connecting all tables to the Journal table in a one-to-many relationship.
 
+## Data Analysis using Power BI DAX and visualizations
 
-### Data Analysis Approach
-
-## Dax Measures
-* I created the following measures in 2 groups to 
-
-
-## Data Analysis using SQL generated queries
-
-1. **Top 5 Margins**
-* SKUs with the top 5 gross margins: this will help in determining the most profitable SKUs. 
+### Dax Measures
+* To analyze the data, I created 2 groups of DAX measures:
+1. **Base Measures: Containing all Financial Metrics**
+```
+2. **KPI Measures: Containing time intelligence measures to compare across periods.** 
  
-```
-WITH margin_calculation AS (
-    SELECT 
-        ProductID,
-        ProductName,
-        (UnitPrice * (1 - DiscountPercent)) * Quantity AS Revenue,
-        CostPrice * Quantity AS COGS
-    FROM dbo.Pricing_Dataset
-)
-SELECT 
-    ProductID,
-    ProductName,
-    ROUND(AVG((Revenue - COGS) / Revenue), 2) AS Gross_Margin_Percent
-FROM margin_calculation
-WHERE ProductID IS NOT NULL
-GROUP BY ProductID, ProductName
-ORDER BY Gross_Margin_Percent DESC
-OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY;
-```
-
-2. **Promo Uplift**
-* Comparing the performance in Revenue between the different promo types to the baseline sales to determine promo uplift. This will help in determing how each promo type affected revenue compared to sales without any promos applied.
-
-```
-with baseline_revenue as (
-	select
-		SUM((UnitPrice * (1 - DiscountPercent)) * Quantity) as baseline_rev
-	from 
-		Pricing_Dataset
-	where
-		PromoApplied = 'FALSE'
-		),
-promo_revenue as (
-	select 
-		PromoType,
-		sum((UnitPrice * (1 - DiscountPercent)) * Quantity) as revenue_promo
-	from 
-		dbo.Pricing_Dataset
-	where 
-		PromoType in ('Discount','Volume Deal')
-	group by
-		PromoType
-		)
-select
-	PromoType,
-	round((revenue_promo-baseline_rev)/baseline_rev,2) as PromoUplift
-from 
-	baseline_revenue, promo_revenue;
-```
-
-3. **Average Order Volume (AOV)**
-* Determining which promo type drove the highest average order volume. This will help in determining which SKUs is driving revenue in terms of return purchases i.e. frequency.
-```
-select 
-	PromoType, 
-	SUM(((UnitPrice * (1 - DiscountPercent)) * Quantity))/
-	COUNT(DISTINCT TransactionID) AS AOV
-from
-	dbo.Pricing_Dataset
-where 
-	PromoType in ('Discount','Volume Deal')
-group by
-	PromoType;
-```
-
-4. **Attach Rate**
-* Determining which products have the highest attach rate - this will help in determining which products drive the most add-on i.e. products that are frequently purchased with other SKUs.
-
-```
-select 
-	ProductID,
-	ProductName,
-	Avg(AttachRate) as attach_rate
-from 
-	dbo.Pricing_Dataset
-where
-	ProductID is not null
-group by
-	ProductID, ProductName
-order by Avg(AttachRate) desc;
-```
-
-5. **Customer Lifetime Segmentation (CLV)**
-* Determining the CLV by City - this will help in assesing which city is top performing in terms of the total worth of customer since acquisition
-
-```
-WITH CLV_calculation AS (
-    SELECT 
-        City,
-        CustomerID, 
-        DATEDIFF(MONTH, MIN(SignupDate), MAX(TransactionDate)) AS Customer_lifespan,
-        COUNT(DISTINCT TransactionID) AS Purchase_Frequency,
-        SUM((UnitPrice * (1 - DiscountPercent)) * Quantity) / COUNT(DISTINCT TransactionID) AS Avg_Revenue
-    FROM 
-        Pricing_Dataset
-    GROUP BY
-        City,
-        CustomerID
-),
-CLV_per_customer AS (
-    SELECT 
-        City,
-        (Avg_Revenue * Purchase_Frequency * Customer_lifespan) AS Customer_CLV,
-		COUNT(distinct CustomerID) as total_customers
-    FROM 
-        CLV_calculation
-	group by City, (Avg_Revenue * Purchase_Frequency * Customer_lifespan)
-)
-SELECT 
-    City,
-    SUM(Customer_CLV) / sum(total_customers) AS CLV_per_City
-FROM 
-    CLV_per_customer
-GROUP BY 
-    City
-ORDER BY 
-    CLV_per_City DESC;
-```
-
-6. **Bundle Performance**
-* Determining which bundles are top performing in terms of margins and perception trade-off
-
-```
-select 
-	ProductName as Bundle,
-	round(sum(((UnitPrice * (1 - DiscountPercent)) * Quantity)- CostPrice*Quantity)
-		/ sum(((UnitPrice * (1 - DiscountPercent)) * Quantity)),4) as Gross_Margin_percent,
-	count(distinct TransactionID) as number_of_orders,
-	round(avg(AttachRate),2) as AttachRate
-from 
-	dbo.Pricing_Dataset
-where 
-	ProductCategory is null
-group by
-	ProductName
-order by
-	Gross_Margin_percent desc, 
-	number_of_orders desc,
-	AttachRate desc;
-```
  
 ## Insights from the Data Analysis
 1. **Top 5 Performing SKUs by Gross Margin**  
