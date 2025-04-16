@@ -52,14 +52,14 @@ The datasets was fetched from Youtube (an online learning platform). It contains
 [(Link to the dataset)](https://docs.google.com/spreadsheets/d/1i778j9FUP08VgS25v64mK8oGUDGDGCxYe9vUziXigrg/edit?gid=0#gid=0)
 
 The dataset 3223 rowa rows 12 columns with transactions and accounts information. The columns are described as follows:
-**Journal**
+### Journal
 * *Date*: Date a transaction is carried out
 * *Division*: Regions (East, North, West, and South) where the company is operational
 * *Description*: Transaction Detail
 * *Dr*: Debit Column
 * *Cr*: Credit Column
 * *Amount*: Monetary value of transaction
-**Chart of Account (COA)**
+###Chart of Account (COA)
 * *Account Code*: Unique ID for each account type
 * *Account*: Account type
 * *IS or BS*: Contains validation to identify entries categorized as either Income Statements (IS) or Balance Sheets (BS)
@@ -87,37 +87,31 @@ The above steps successfully imported the dataset into my Power Query editor and
 ## Data Automation: Cleaning and Transformation
 
 ### Unpivot Columns
-* Unpivoted the Transaction types Credit (Cr), and Debit (Dr) columns to transform into rows instead of columns for useability 
-
-```
-#"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Changed Type", {"Date", "Division", "Description", "Amount"}, "Attribute", "Value")
-```
-
-### Rename Columns
+1. **Unpivot Columns**
+*  Unpivoted the Transaction types Credit (Cr), and Debit (Dr) columns to transform into rows instead of columns for useability 
+2. **Rename Columns**
 * Rename the newly created columns from the step above.
-
-```
-    #"Renamed Columns" = Table.RenameColumns(#"Unpivoted Columns",{{"Attribute", "Type"}, {"Value", "Account"}}
-```
-## Add Custom Column 
+3. **Add Custom Column** 
 * Add a custom column to negate all the debit entries and change data type
 
-```
-    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "TB Amount", each if[Type] = "Dr" then [Amount]*-1 else [Amount])
-    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"TB Amount", type number}})
-```
-## Create a slicer table using the Division column
+### Create new tables
+1. **Create New Tables to be used as a visual slicer using the Division**
 * Create a new table by referencing the journal table, then take out all other columns except the Division column, take out duplicates.
-
+* Close and apply changes
 ```
 let
-    Source = Journal,
-    #"Removed Other Columns" = Table.SelectColumns(Source,{"Division"}),
-    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns")
+    Source = Excel.Workbook(File.Contents("C:\Users\David Micheal\Downloads\Creating an Income Statement Dashboard_Start.xlsx"), null, true),
+    Journal_Sheet = Source{[Item="Journal",Kind="Sheet"]}[Data],
+    #"Promoted Headers" = Table.PromoteHeaders(Journal_Sheet, [PromoteAllScalars=true]),
+    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Division", type text}, {"Description", type text}, {"Dr", type text}, {"Cr", type text}, {"Amount", type number}}),
+    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Changed Type", {"Date", "Division", "Description", "Amount"}, "Attribute", "Value"),
+    #"Renamed Columns" = Table.RenameColumns(#"Unpivoted Columns",{{"Attribute", "Type"}, {"Value", "Account"}}),
+    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "TB Amount", each if[Type] = "Dr" then [Amount]*-1 else [Amount]),
+    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"TB Amount", type number}})
 in
-    #"Removed Duplicates"
+    #"Changed Type1"
 ```
-## Create Calendar table
+2.  Create Calendar table
 *  In the desktop view, create Calendar table, and mark as date table
 ```
 Calendar = ADDCOLUMNS(
