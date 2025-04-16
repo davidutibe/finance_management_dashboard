@@ -48,7 +48,7 @@ The project aims to answer the following research questions:
 
 ## About the Dataset
 The datasets was downloaded from youtube and tweaked using Microsoft Excel to meet the purpose of this research. It contains of 2 tables - namely Journal and Chart of Account (COA).
-[(Link to the dataset)](https://docs.google.com/spreadsheets/d/1i778j9FUP08VgS25v64mK8oGUDGDGCxYe9vUziXigrg/edit?gid=0#gid=0)
+[(Link to the dataset)]([https://docs.google.com/spreadsheets/d/1i778j9FUP08VgS25v64mK8oGUDGDGCxYe9vUziXigrg/edit?gid=0#gid=0](https://docs.google.com/spreadsheets/d/13ePx7OOsPBk7ocTlroBT7clDB-kSIqSr/edit?gid=676727392#gid=676727392))
 
 The dataset 3223 rows rows 12 columns with transactions and accounts information. The columns are described as follows:
 ### Journal
@@ -130,7 +130,7 @@ Calendar = ADDCOLUMNS(
 ### Data Modelling
 * I created a star schema data model by connecting all tables to the Journal table in a one-to-many relationship.
 See snippet below: 
-![Dashboard snippet](https://github.com/davidutibe/finance_management_dashboard/blob/main/Finance%20Dashboard%20(Management).JPG?raw=true)
+![Dashboard snippet]([https://github.com/davidutibe/finance_management_dashboard/blob/main/Finance%20Dashboard%20(Management).JPG?raw=true](https://github.com/davidutibe/finance_management_dashboard/blob/main/Data%20Modelling.JPG)
 
 ## Data Analysis using Power BI DAX and visualizations
 
