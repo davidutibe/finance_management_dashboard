@@ -27,7 +27,7 @@
 ## Introduction
 Home Store (hypthetical), is a growing grocery delivery service across Nigeria, has seen year-on-year fluctuations in profitability across its regional outlets. Leadership has rolled out varying strategies across procurement and operations between 2019 and 2020 to respond to regional performance disparities and rising operational costs.
 
-This dashboard was created using Power BI to track the month-on-month and year-over-year performance of key Profit & Loss (P&L) indicators. With granular tracking at both regional and monthly levels, the company aims to uncover insights to guide pricing adjustments, cost reduction plans, and growth opportunities. 
+This dashboard was created using Power BI to track the month-on-month and year-over-year performance of key Profit & Loss (P&L) indicators. With granular tracking at both regional and monthly levels, the company aims to uncover insights to guide pricing adjustments, cost reduction plans, and growth opportunities. The dashboard is best suited for senior management executives, saving the need to navigate and drill through sophisticated dashboards.
 
 ## Project Objectives
 1. To evaluate the impact of operational efficiency and cost structures across regions.
