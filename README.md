@@ -231,6 +231,41 @@ revenue while maintaining price integrity.
 ## Conclusion
 This project has demonstrated how financial data, when transformed and visualized effectively using Power BI, can offer powerful insights into operational performance, cost dynamics, and profitability trends across regions. By combining rigorous data transformation, custom DAX measures, and intuitive visuals, we identified key drivers of net income—most notably COGS variability, expense inefficiency, and tax implications.
 
+## 📘 Glossary of Terms
+
+- **COGS (Cost of Goods Sold):** Direct costs attributable to the production of goods sold by a company.
+
+- **Gross Profit:** Revenue minus COGS; indicates how efficiently a company is producing goods.
+
+- **Expenses:** Operational costs incurred in the process of generating revenue (excluding COGS).
+
+- **EBIT (Earnings Before Interest and Taxes):** A measure of a firm's profit that includes all expenses except interest and income tax.
+
+- **Finance Costs:** Interest and other costs incurred by the company for borrowed funds.
+
+- **Net Income Before Tax:** Profit remaining after operating expenses and finance costs, but before taxes.
+
+- **Tax:** A statutory financial charge imposed by a government on income.
+
+- **Net Income:** Final profit after all expenses and taxes have been deducted.
+
+- **Revenue:** Total income generated from normal business operations.
+
+- **Margin:** The difference between revenue and expenses, often expressed as a percentage.
+
+- **AOV (Average Order Volume):** Average value of customer orders over a specific period.
+
+- **EBIT Margin:** EBIT expressed as a percentage of revenue; shows operating profitability.
+
+- **YOY (Year-over-Year):** A method of evaluating two or more measured events to compare the results at one time period with those of a comparable time period on an annualized basis.
+
+- **KPI (Key Performance Indicator):** Quantifiable measure used to evaluate success in meeting objectives.
+
+- **Variance:** The difference between planned, budgeted, or standard cost and actual results.
+
+- **DAX (Data Analysis Expressions):** Formula language used in Power BI for data modeling and calculations.
+
+
 <br/>
    
 **Thank you for taking the time to read through this project!**
