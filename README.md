@@ -135,7 +135,7 @@ See snippet below:
 ## Data Analysis using Power BI DAX and visualizations
 
 ### Dax Measures
-* To analyze the data, I created 2 groups of DAX measures:
+* To analyze the data, I created 2 groups of DAX measures with a combined total of 27 measures, some of which are listed below:
 1. **Base Measures: Containing all Financial Metrics**
 ```
 1. Revenue = CALCULATE([Report Value],COA[Category] = "Revenue")
