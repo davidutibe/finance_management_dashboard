@@ -48,7 +48,7 @@ The project aims to answer the following research questions:
 The datasets was downloaded from youtube and tweaked using Microsoft Excel to meet the purpose of this research. It contains of 2 tables - namely Journal and Chart of Account (COA).
 [(Link to the dataset)](https://docs.google.com/spreadsheets/d/1i778j9FUP08VgS25v64mK8oGUDGDGCxYe9vUziXigrg/edit?gid=0#gid=0)
 
-The dataset 3223 rowa rows 12 columns with transactions and accounts information. The columns are described as follows:
+The dataset 3223 rows rows 12 columns with transactions and accounts information. The columns are described as follows:
 ### Journal
 * *Date*: Date a transaction is carried out
 * *Division*: Regions (East, North, West, and South) where the company is operational
@@ -134,9 +134,59 @@ Calendar = ADDCOLUMNS(
 * To analyze the data, I created 2 groups of DAX measures:
 1. **Base Measures: Containing all Financial Metrics**
 ```
-2. **KPI Measures: Containing time intelligence measures to compare across periods.** 
- 
- 
+1. Revenue = CALCULATE([Report Value],COA[Category] = "Revenue")
+
+2. Cost of Goods Sold = CALCULATE([Report Value], COA[Category] = "Cost of Goods Sold")
+
+3. Gross Profit = [Revenue]+[Cost of Goods Sold]
+
+4. Tax = if( [Net Income Before Tax]>0, -[Net Income Before Tax]*0.3, 0)
+
+5. Net Income = [Net Income Before Tax]+[Tax]
+
+6. Net Income Before Tax = [EBIT]+[Finance Costs]
+
+7. EBIT = [Gross Profit]+[Expenses]
+
+8. Expenses = CALCULATE([Report Value],COA[Category] = "Expenses")
+
+9. Finance Costs = Calculate( [Report Value], COA[Category] = "Finance Costs")
+
+10. Current = 
+var currentcategory = SELECTEDVALUE(Layout[Category])
+var Amount = switch(true(),
+                currentcategory = "Revenue", [Revenue],
+                currentcategory = "Cost of Goods Sold", [Cost of Goods Sold],
+                currentcategory = "Gross Profit", [Gross Profit],
+                currentcategory = "Expenses", [Expenses],
+                currentcategory = "EBIT", [EBIT],
+                currentcategory = "Finance Costs", [Finance Costs],
+                currentcategory = "Net Income Before Tax", [Net Income Before Tax],
+                currentcategory = "Tax", [Tax],
+                currentcategory = "Net Income", [Net Income],
+                0)
+RETURN
+    Amount
+
+11. Previous = CALCULATE([Current], SAMEPERIODLASTYEAR('Calendar'[Date]))
+```
+2. **KPI Measures: measures to compare metrics across periods.** 
+```
+1. Finance Costs Current = abs(CALCULATE([Current], Layout[Category]= "Finance Costs"))
+
+2. Expenses Previous = abs(CALCULATE([Previous], Layout[Category] = "Expenses"))
+
+3. Expenses % Change = CALCULATE([% Change], Layout[Category] = "Expenses")
+
+4. EBIT Previous = abs(CALCULATE([Previous], Layout[Category] = "EBIT"))
+
+6. Cost of Goods Sold Previous = abs(CALCULATE([Previous], Layout[Category] = "Cost of Goods Sold"))
+
+7. Revenue Previous = abs(CALCULATE([Previous], Layout[Category] = "Cost of Goods Sold"))
+ ```
+## Data Visualizations
+To visualize the data, I used the following native power BI visuals: Matrix, Cards, Doughnut chart, Slicer, Sparkline, and conditional formatting tools.
+>>> insert image>> Dashboard snippet
 ## Insights from the Data Analysis
 1. **Top 5 Performing SKUs by Gross Margin**  
    * *Observation*: Rice (5Kg) and Cooking Oil generated the highest profit margin with 81% and 57% respectively. The remaining 3 SKUs - Soft Drink (29%), Milk (28%), and Pasta (28%) cluster closely with modest margins, significantly low compared to the top 2. 
