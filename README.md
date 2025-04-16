@@ -70,7 +70,7 @@ The dataset 3223 rows rows 12 columns with transactions and accounts information
 ## Languages, Utilities, and Environments Used
 * Microsoft Excel: Data Simulation
 * Power Query: Data Automation: Cleaning, and Transformation
-* Power BI: Data Analysis and Exploration [(link to the Power BI file)]()
+* Power BI: Data Analysis and Exploration [(link to the Power BI file)](https://drive.google.com/file/d/1_ilCZP-Ss7KfRQsa-HjBi4pBolh0EnQV/view?usp=drive_link)
 
 ## Importing the Datasets into Power BI
 To import the dataset into Power BI, I proceeded as follows:  
