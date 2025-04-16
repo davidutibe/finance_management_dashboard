@@ -11,7 +11,7 @@
 7. [Data Automation: Cleaning and Transformation](#data-automation-cleaning-and-transformation)
    - [Renamed Columns](#renamed-columns)
    - [Changed Column Data Types](#changed-column-data-types)
-8. [Data Analysis using SQL generated queries](#data-analysis-using-sql-generated-queries)
+8. [Data Analysis](#data-analysis-using-sql-generated-queries)
    - [Top 5 Margins](#1-top-5-margins)
    - [Promo Uplift](#2-promo-uplift)
    - [Average Order Volume (AOV)](#3-average-order-volume-aov)
@@ -50,7 +50,7 @@ The datasets was downloaded from youtube and tweaked using Microsoft Excel to me
 
 The dataset 3223 rows rows 12 columns with transactions and accounts information. The columns are described as follows:
 ### Journal
-* *Date*: Date a transaction is carried out
+* *Date*: Date a transaction was carried out
 * *Division*: Regions (East, North, West, and South) where the company is operational
 * *Description*: Transaction Detail
 * *Dr*: Debit Column
@@ -127,6 +127,7 @@ Calendar = ADDCOLUMNS(
 ```
 ### Data Modelling
 * I created a star schema data model by connecting all tables to the Journal table in a one-to-many relationship.
+See snippet below: 
 ![Dashboard snippet](https://github.com/davidutibe/finance_management_dashboard/blob/main/Finance%20Dashboard%20(Management).JPG?raw=true)
 
 ## Data Analysis using Power BI DAX and visualizations
@@ -186,7 +187,8 @@ RETURN
 7. Revenue Previous = abs(CALCULATE([Previous], Layout[Category] = "Cost of Goods Sold"))
  ```
 ## Data Visualizations
-To visualize the data, I used the following native power BI visuals: Matrix, Cards, Doughnut chart, Slicer, Sparkline, and conditional formatting tools.
+To visualize the data, I used the following native power BI visuals: Matrix, Cards, Doughnut chart, Slicer, Sparkline, and conditional formatting tools. See dashboard snippet below:
+
 ![Dashboard snippet](https://github.com/davidutibe/finance_management_dashboard/blob/main/Finance%20Dashboard%20(Management).JPG?raw=true)
 
 ## Insights from the Data Analysis
