@@ -221,17 +221,17 @@ December 2020 (West): EBIT = 30,589.5, strong revenue-to-expense ratio.
 2. **EBIT-Driven Expense Optimization**    
     * Align expense growth with EBIT (Earnings Before Interest and Taxes) to ensure every dollar spent delivers measurable financial return by introducing performance-based budgeting, tying expense approvals to historical ROI metrics and EBIT contribution.  
 3. **Tax Planning Integration into Profitability**  
-* Divisions with high net income also tended to have more stable COGS and lower expenses, which amplified the effect of tax cuts, to optimize net-profit-to tax ratio, the company should consider integrating tax planning with operations by identifying forecasted quarters with taxable spikes, enabling timing of deductions.
+   * Divisions with high net income also tended to have more stable COGS and lower expenses, which amplified the effect of tax cuts, to optimize net-profit-to tax ratio, the company should consider integrating tax planning with operations by identifying forecasted quarters with taxable spikes, enabling timing of deductions.
 4. **Division Investment Prioritization**
-* The company should double down on the West division with data-backed expansion plans—use clustering to identify high-performing months and replicate conditions. 
-* For the East, pilot a performance stabilization program with a focus on forecast accuracy and expense pacing.
-* Conduct a deep diagnostic review of South and North divisions, using benchmarking and root cause analysis. Consider resource reallocation if improvement KPIs aren’t met in 2–3 quarters.
+   * The company should double down on the West division with data-backed expansion plans—use clustering to identify high-performing months and replicate conditions. 
+   * For the East, pilot a performance stabilization program with a focus on forecast accuracy and expense pacing.
+   * Conduct a deep diagnostic review of South and North divisions, using benchmarking and root cause analysis. Consider resource reallocation if improvement KPIs aren’t met in 2–3 quarters.
 revenue while maintaining price integrity.
 
 ## Conclusion
 This project has demonstrated how financial data, when transformed and visualized effectively using Power BI, can offer powerful insights into operational performance, cost dynamics, and profitability trends across regions. By combining rigorous data transformation, custom DAX measures, and intuitive visuals, we identified key drivers of net income—most notably COGS variability, expense inefficiency, and tax implications.
 
-## 📘 Glossary of Terms
+## Glossary of Terms
 
 - **COGS (Cost of Goods Sold):** Direct costs attributable to the production of goods sold by a company.
 
