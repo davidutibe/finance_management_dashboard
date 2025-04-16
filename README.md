@@ -59,7 +59,7 @@ The dataset 3223 rowa rows 12 columns with transactions and accounts information
 * *Dr*: Debit Column
 * *Cr*: Credit Column
 * *Amount*: Monetary value of transaction
-###Chart of Account (COA)
+### Chart of Account (COA)
 * *Account Code*: Unique ID for each account type
 * *Account*: Account type
 * *IS or BS*: Contains validation to identify entries categorized as either Income Statements (IS) or Balance Sheets (BS)
@@ -128,11 +128,11 @@ Calendar = ADDCOLUMNS(
                     "Month Name", format([Date], "mmm")
                       )
 ```
-## Data Modelling
+### Data Modelling
 * I created a star schema data model by connecting all tables to the Journal table in a one-to-many relationship.
 
 
-## Data Analysis Approach
+### Data Analysis Approach
 
 ## Dax Measures
 * I created the following measures in 2 groups to 
