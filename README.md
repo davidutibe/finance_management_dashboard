@@ -86,18 +86,12 @@ The above steps successfully imported the dataset into my Power Query editor and
 
 ## Data Automation: Cleaning and Transformation
 
-### Unpivot Columns
 1. **Unpivot Columns**
 *  Unpivoted the Transaction types Credit (Cr), and Debit (Dr) columns to transform into rows instead of columns for useability 
 2. **Rename Columns**
 * Rename the newly created columns from the step above.
 3. **Add Custom Column** 
 * Add a custom column to negate all the debit entries and change data type
-
-### Create new tables
-1. **Create New Tables to be used as a visual slicer using the Division**
-* Create a new table by referencing the journal table, then take out all other columns except the Division column, take out duplicates.
-* Close and apply changes
 ```
 let
     Source = Excel.Workbook(File.Contents("C:\Users\David Micheal\Downloads\Creating an Income Statement Dashboard_Start.xlsx"), null, true),
@@ -111,7 +105,20 @@ let
 in
     #"Changed Type1"
 ```
-2.  Create Calendar table
+### Create new tables
+1. **Create New Tables to be used as a visual slicer using the Division**
+* Create a new table by referencing the journal table, then take out all other columns except the Division column, take out duplicates.
+* Close and apply changes
+```
+let
+    Source = Journal,
+    #"Removed Other Columns" = Table.SelectColumns(Source,{"Division"}),
+    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns")
+in
+    #"Removed Duplicates"
+```
+
+2.  **Create Calendar table**
 *  In the desktop view, create Calendar table, and mark as date table
 ```
 Calendar = ADDCOLUMNS(
@@ -121,15 +128,14 @@ Calendar = ADDCOLUMNS(
                     "Month Name", format([Date], "mmm")
                       )
 ```
+## Data Modelling
+* I created a star schema data model by connecting all tables to the Journal table in a one-to-many relationship.
+
 
 ## Data Analysis Approach
 
-
-## Data Modelling
-* Create a star schema data model by connecting all tables to the Journal table in a one-to-many relationship.
-
-## Create Measures
-* To visualize the 
+## Dax Measures
+* I created the following measures in 2 groups to 
 
 
 ## Data Analysis using SQL generated queries
