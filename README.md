@@ -130,7 +130,7 @@ Calendar = ADDCOLUMNS(
 ### Data Modelling
 * I created a star schema data model by connecting all tables to the Journal table in a one-to-many relationship.
 See snippet below: 
-![Dashboard snippet]([https://github.com/davidutibe/finance_management_dashboard/blob/main/Finance%20Dashboard%20(Management).JPG?raw=true](https://github.com/davidutibe/finance_management_dashboard/blob/main/Data%20Modelling.JPG)
+![Data Modelling](https://github.com/davidutibe/finance_management_dashboard/blob/main/Data%20Modelling.JPG)
 
 ## Data Analysis using Power BI DAX and visualizations
 
