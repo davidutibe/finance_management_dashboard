@@ -193,7 +193,7 @@ To visualize the data, I used the following native power BI visuals: Matrix, Car
 
 ## Insights from the Data Analysis
 1. **How did cost of goods sold (COGS) trends affect gross margins across months?**  
-   * *Observation*: From the data, months with lower Costs of Goods sold, then to show higher gross margins. For months like June 2020 where the gross profit dropped as high as 105%, we observed a corresponding increase in gross margins by as high as 44%.
+   * *Observation*: From the data, months with lower Costs of Goods sold, tend to show higher gross margins. For months like June 2020 where the gross profit dropped as high as 105%, we observed a corresponding increase in gross margins by as high as 44%.
    * *Insights*: Cost of goods sold directly impacts gross margins, a few outlier months such as July and Oct 2020 , however, showed relatively lower gross profit despite reduced Costs of Goods sold, possibly due to lower volume or increased operating expenses.
 
 2. **Are expense increases in 2020 justified by proportionate increases in EBIT?**  
